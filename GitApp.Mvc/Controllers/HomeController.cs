@@ -20,8 +20,34 @@ namespace GitApp.Mvc.Controllers
 
         public IActionResult Index()
         {
-            var model = new GitAppInputViewModel();
-            return View(model);
+            try
+            {
+                var model = new GitAppInputViewModel();
+                return View(model);
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError($"Error while rendering Index Page => {ex.Message}");
+                _logger.LogError(ex.StackTrace);
+                _logger.LogDebug(ex.InnerException?.Message);
+            }
+        }
+
+        [HttpPost]
+        public IActionResult Index(GitAppInputViewModel model)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return View(model);
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error while rendering Index Page => {ex.Message}");
+                _logger.LogError(ex.StackTrace);
+                _logger.LogDebug(ex.InnerException?.Message);
+            }
         }
 
         public IActionResult Privacy()
