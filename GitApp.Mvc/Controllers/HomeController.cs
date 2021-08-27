@@ -20,7 +20,8 @@ namespace GitApp.Mvc.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var model = new GitAppInputViewModel();
+            return View(model);
         }
 
         public IActionResult Privacy()
