@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace GitApp.Infrastructure.Adapters
 {
+    /// <summary>
+    /// This Api Client is used to talk to Github
+    /// </summary>
     public class GitApiClient
     {
         private readonly IHttpClientFactory _clientFactory;
