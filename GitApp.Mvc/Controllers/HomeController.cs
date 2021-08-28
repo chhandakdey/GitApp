@@ -54,10 +54,7 @@ namespace GitApp.Mvc.Controllers
                     return View(model);
                 var requestDTO = _transformer.Transform<GitAppInputViewModel, GitRequestDTO>(model);
                 var result = await _gitService.GetCommitMessagesAsync(requestDTO);
-                var resultViewModel = _transformer.Transform<IEnumerable<GitResultCommentDTO>, List<GitResultCommentViewModel>>(result);
-                //var serializedData = JsonSerializer.Serialize(resultViewModel, resultViewModel.GetType());
-                //TempData.Add("listModel", serializedData);
-                //return RedirectToAction("ListGitComment");
+                var resultViewModel = _transformer.Transform<IEnumerable<GitResultCommentDTO>, IEnumerable<GitResultCommentViewModel>>(result);
                 return View("GitCommentResultView", resultViewModel);
             }
             catch (Exception ex)
@@ -68,14 +65,6 @@ namespace GitApp.Mvc.Controllers
             }
             return View(model);
         }
-
-        //public IActionResult ListGitComment()
-        //{
-
-        //    //var model = TempData["listModel"] as IEnumerable<GitResultCommentViewModel>;
-        //    //var model = JsonSerializer.Deserialize<List<GitResultCommentViewModel>>(TempData["listModel"].ToString());
-        //    return View("GitCommentResultView", model);
-        //}
 
         public IActionResult Privacy()
         {

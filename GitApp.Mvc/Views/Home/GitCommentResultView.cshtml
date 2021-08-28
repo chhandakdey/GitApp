@@ -4,12 +4,9 @@
     ViewData["Title"] = "GitCommentResultView";
 }
 
-<h1>GitCommentResultView</h1>
+<h1>List of Commit for the given Input</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
+<table class="table" id="myTable">
     <thead>
         <tr>
             <th>
@@ -19,12 +16,8 @@
                 @Html.DisplayNameFor(model => model.Comment)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FineComment)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.SortedWords)
             </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -37,17 +30,19 @@
                 @Html.DisplayFor(modelItem => item.Comment)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FineComment)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.SortedWords)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
             </td>
         </tr>
 }
     </tbody>
 </table>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#myTable").DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        });
+    });
+</script>

@@ -53,9 +53,11 @@ namespace GitApp.Application.Services
                 var sortedString = string.Empty;
                 foreach(var word in comment.SortedWords)
                 {
-                    sortedString = sortedString + word.Word + "(" + word.Count + "), ";
+                    if(!string.IsNullOrWhiteSpace(word.Word))
+                        sortedString = sortedString + word.Word + "(" + word.Count + "), ";
                 }
-                resultDto.SortedWords = sortedString;
+                if(sortedString.Length > 0)
+                    resultDto.SortedWords = sortedString.Substring(0, sortedString.Length - 2);
                 lstResultDTO.Add(resultDto);
             }
             return lstResultDTO;
