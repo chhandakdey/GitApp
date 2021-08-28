@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace GitApp.Domain
@@ -28,7 +29,8 @@ namespace GitApp.Domain
 
         public static string RemoveEscapeChars(string statement)
         {
-            return statement.Replace("\n", "").Replace("\r", "").Replace("\t", "").Replace(",","").Replace(".","");
+            return statement.Replace("\n", "").Replace("\r", "").Replace("\t", "").Replace(",", "").Replace(".", "")
+                .Replace(">", "").Replace("<", "");
         }
     }
 }
