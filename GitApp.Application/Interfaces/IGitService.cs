@@ -1,4 +1,5 @@
 ﻿using GitApp.Application.DTOs;
+using GitApp.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace GitApp.Application.Interfaces
 {
     public interface IGitService
     {
-        public Task<IEnumerable<GitCommentDTO>> GetCommitMessagesAsync(GitRequestDTO requestDTO);
+        public Task<IEnumerable<GitResultCommentDTO>> GetCommitMessagesAsync(GitRequestDTO requestDTO);
     }
 }

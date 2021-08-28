@@ -35,7 +35,7 @@ namespace GitApp.Infrastructure.Daos
                     var comment = data.GetProperty("body").GetString();
                     if(!string.IsNullOrEmpty(comment))
                     {
-                        commentList.Add(new GitCommentDTO { Id = commentId.ToString(), Message = comment });
+                        commentList.Add(new GitCommentDTO { Id = commentId, Message = comment });
                     }
                 }                
             }
