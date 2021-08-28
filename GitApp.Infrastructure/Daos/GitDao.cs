@@ -26,11 +26,18 @@ namespace GitApp.Infrastructure.Daos
             _logger.LogDebug($"GitDao: GetAllAsync => Response is returned");
             using var responseStream = await response.Content.ReadAsStreamAsync();
             var responseData = await JsonSerializer.DeserializeAsync
-                <IEnumerable<dynamic>>(responseStream, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                <IEnumerable<JsonElement>>(responseStream, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
             List<GitCommentDTO> commentList = new List<GitCommentDTO>();
             foreach(var data in responseData)
             {
-                commentList.Add(new GitCommentDTO { Id = data.id, Message = data.body });
+                int commentId;
+                if (data.GetProperty("id").TryGetInt32(out commentId)) {
+                    var comment = data.GetProperty("body").GetString();
+                    if(!string.IsNullOrEmpty(comment))
+                    {
+                        commentList.Add(new GitCommentDTO { Id = commentId.ToString(), Message = comment });
+                    }
+                }                
             }
             return commentList;
         }

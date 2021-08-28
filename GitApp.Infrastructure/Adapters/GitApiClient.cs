@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using GitApp.Infrastructure.Adapters.Interfaces;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace GitApp.Infrastructure.Adapters
     /// <summary>
     /// This Api Client is used to talk to Github
     /// </summary>
-    public class GitApiClient
+    public class GitApiClient : IApiClient
     {
         private readonly IHttpClientFactory _clientFactory;
         private readonly ILogger<GitApiClient> _logger;

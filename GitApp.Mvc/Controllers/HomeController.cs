@@ -1,4 +1,7 @@
-﻿using GitApp.Mvc.Models;
+﻿using GitApp.Application.DTOs;
+using GitApp.Application.Interfaces;
+using GitApp.Mvc.Models;
+using GitApp.Mvc.Transformers.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,10 +15,14 @@ namespace GitApp.Mvc.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ITransformer _transformer;
+        private readonly IGitService _gitService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ITransformer transformer, IGitService gitService)
         {
             _logger = logger;
+            _transformer = transformer;
+            _gitService = gitService;
         }
 
         public IActionResult Index()
@@ -31,17 +38,18 @@ namespace GitApp.Mvc.Controllers
                 _logger.LogError(ex.StackTrace);
                 _logger.LogDebug(ex.InnerException?.Message);
             }
-            return View("Error");
+            return RedirectToAction("Error");
         }
 
         [HttpPost]
-        public IActionResult Index(GitAppInputViewModel model)
+        public async Task<IActionResult> Index(GitAppInputViewModel model)
         {
             try
             {
-                //if (!ModelState.IsValid)
+                if (!ModelState.IsValid)
                     return View(model);
-
+                var requestDTO = _transformer.Transform<GitAppInputViewModel, GitRequestDTO>(model);
+                var result = await _gitService.GetCommitMessagesAsync(requestDTO);
             }
             catch (Exception ex)
             {
