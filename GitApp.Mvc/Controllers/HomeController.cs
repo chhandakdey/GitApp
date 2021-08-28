@@ -31,6 +31,7 @@ namespace GitApp.Mvc.Controllers
                 _logger.LogError(ex.StackTrace);
                 _logger.LogDebug(ex.InnerException?.Message);
             }
+            return View("Error");
         }
 
         [HttpPost]
@@ -38,7 +39,7 @@ namespace GitApp.Mvc.Controllers
         {
             try
             {
-                if (!ModelState.IsValid)
+                //if (!ModelState.IsValid)
                     return View(model);
 
             }
@@ -48,6 +49,7 @@ namespace GitApp.Mvc.Controllers
                 _logger.LogError(ex.StackTrace);
                 _logger.LogDebug(ex.InnerException?.Message);
             }
+            return View(model);
         }
 
         public IActionResult Privacy()
