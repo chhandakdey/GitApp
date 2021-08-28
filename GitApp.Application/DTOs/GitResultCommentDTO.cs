@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace GitApp.Application.DTOs
 {
-    public class GitCommentDTO
+    public class GitResultCommentDTO
     {
         public long Id { get; set; }
-        public string Message { get; set; }
+        public string Comment { get; set; }
+        public string FineComment { get; set; }
+        public string SortedWords { get; set; }
     }
 }
