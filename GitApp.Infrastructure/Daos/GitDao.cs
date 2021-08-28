@@ -27,6 +27,7 @@ namespace GitApp.Infrastructure.Daos
             using var responseStream = await response.Content.ReadAsStreamAsync();
             var responseData = await JsonSerializer.DeserializeAsync
                 <IEnumerable<JsonElement>>(responseStream, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            _logger.LogDebug($"GitDao: GetAllAsync => Data is serialized {responseData}");
             List<GitCommentDTO> commentList = new List<GitCommentDTO>();
             foreach(var data in responseData)
             {
@@ -39,6 +40,7 @@ namespace GitApp.Infrastructure.Daos
                     }
                 }                
             }
+            _logger.LogDebug($"GitDao: GetAllAsync => DTO Object is created");
             return commentList;
         }
     }

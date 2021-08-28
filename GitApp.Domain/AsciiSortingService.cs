@@ -1,4 +1,5 @@
 ﻿using GitApp.Domain.Interfaces;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -10,8 +11,14 @@ namespace GitApp.Domain
 {
     public class AsciiSortingService : IAsciiSortingService
     {
+        private readonly ILogger<AsciiSortingService> _logger;
+        public AsciiSortingService(ILogger<AsciiSortingService> logger)
+        {
+            _logger = logger;
+        }
         public IEnumerable<KeyValuePair<string, int>> GetSorted(string statement)
         {
+            _logger.LogDebug($"AsciiSortingService => GetSorted: Statement {statement}");
             var tree = new BinarySearchTree();
             var fineStatement = UtilityServices.RemoveEscapeChars(statement);
             string[] arr = fineStatement.Split(" ");
@@ -91,7 +98,6 @@ namespace GitApp.Domain
             if (root != null)
             {
                 inorderRec(root.left);
-                Debug.WriteLine(root.key);
                 KeyValuePair<string, int> node = new(root.key, root.Count);
                 sortedList.Add(node);
                 inorderRec(root.right);

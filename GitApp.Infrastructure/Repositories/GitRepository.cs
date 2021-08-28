@@ -35,7 +35,11 @@ namespace GitApp.Infrastructure.Repositories
         private string BuildTargetUrl(GitRequestDTO requestModel)
         {
             var targetUrl = _configurationSection.GetValue<string>("GitCommentUrl");
-            return targetUrl.Replace("{owner}", requestModel.Username).Replace("{repo}", requestModel.RepoUrl);
+            var gitInitialStr = _configurationSection.GetValue<string>("GitRepoInitialUrl");
+            var gitEndStr = _configurationSection.GetValue<string>("GitRepoEndUrl");
+            var repoName = requestModel.RepoUrl.Substring(gitInitialStr.Length);
+            repoName = repoName.Substring(0, repoName.Length - gitEndStr.Length);
+            return targetUrl.Replace("{repo}", repoName);
         }
         private IEnumerable<KeyValuePair<string, string>> GetHeaders(string username, string password)
         {

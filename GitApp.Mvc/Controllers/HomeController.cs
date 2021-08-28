@@ -28,16 +28,18 @@ namespace GitApp.Mvc.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.Error = false;
             try
             {
                 var model = new GitAppInputViewModel();
                 model.AccessToken = "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";
-                model.RepoUrl = "hello-world";
+                model.RepoUrl = "https://github.com/octocat/hello-world.git";
                 model.Username = "octocat";
                 return View(model);
             }
             catch(Exception ex)
             {
+                ViewBag.Error = true;
                 _logger.LogError($"Error while rendering Index Page => {ex.Message}");
                 _logger.LogError(ex.StackTrace);
                 _logger.LogDebug(ex.InnerException?.Message);
@@ -48,6 +50,7 @@ namespace GitApp.Mvc.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(GitAppInputViewModel model)
         {
+            ViewBag.Error = false;
             try
             {
                 if (!ModelState.IsValid)
@@ -59,6 +62,7 @@ namespace GitApp.Mvc.Controllers
             }
             catch (Exception ex)
             {
+                ViewBag.Error = true;
                 _logger.LogError($"Error while rendering Index Page => {ex.Message}");
                 _logger.LogError(ex.StackTrace);
                 _logger.LogDebug(ex.InnerException?.Message);
