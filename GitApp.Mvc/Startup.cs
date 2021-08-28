@@ -1,3 +1,7 @@
+using GitApp.Application;
+using GitApp.Infrastructure;
+using GitApp.Mvc.Transformers;
+using GitApp.Mvc.Transformers.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -24,6 +28,10 @@ namespace GitApp.Mvc
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddScoped<ITransformer, GenericTransformer>();
+            services.AddApplication();
+            services.AddInfrastructure();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

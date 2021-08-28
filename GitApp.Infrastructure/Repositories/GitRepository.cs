@@ -35,7 +35,7 @@ namespace GitApp.Infrastructure.Repositories
         private string BuildTargetUrl(GitRequestDTO requestModel)
         {
             var targetUrl = _configurationSection.GetValue<string>("GitCommentUrl");
-            return targetUrl.Replace("{owner}", requestModel.RepoUrl).Replace("{repo}", requestModel.RepoUrl);
+            return targetUrl.Replace("{owner}", requestModel.Username).Replace("{repo}", requestModel.RepoUrl);
         }
         private IEnumerable<KeyValuePair<string, string>> GetHeaders(string username, string password)
         {
@@ -45,6 +45,7 @@ namespace GitApp.Infrastructure.Repositories
                                                           Convert.ToBase64String(byteArray));
             headers.Add(new KeyValuePair<string, string>("Authorization", clientAuthrizationHeader.ToString()));
             headers.Add(new KeyValuePair<string, string>("Accept", _configurationSection.GetValue<string>("AcceptHeaderForComment")));
+            headers.Add(new KeyValuePair<string, string>("User-Agent", "GitApp"));
             _logger.LogDebug($"GitRepository: GetHeaders => Headers are added");
             return headers;
         }
