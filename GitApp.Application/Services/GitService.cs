@@ -13,15 +13,13 @@ namespace GitApp.Application.Services
 {
     public class GitService : IGitService
     {
-        private readonly IAsciiSortingService _asciiService;
-        private readonly ITransformer _transformer;
+        private readonly IAsciiSortingService _asciiService;        
         private readonly IDao<GitRequestDTO, IEnumerable<GitCommentDTO>> Dao;     
 
-        public GitService(IDao<GitRequestDTO, IEnumerable<GitCommentDTO>> dao, IAsciiSortingService asciiService, ITransformer transformer)
+        public GitService(IDao<GitRequestDTO, IEnumerable<GitCommentDTO>> dao, IAsciiSortingService asciiService)
         {
             Dao = dao;
             _asciiService = asciiService;
-            _transformer = transformer;
         }
         public async Task<IEnumerable<GitResultCommentDTO>> GetCommitMessagesAsync(GitRequestDTO model)
         {
@@ -56,7 +54,7 @@ namespace GitApp.Application.Services
                     if(!string.IsNullOrWhiteSpace(word.Word))
                         sortedString = sortedString + word.Word + "(" + word.Count + "), ";
                 }
-                if(sortedString.Length > 0)
+                if(sortedString.Length > 1)
                     resultDto.SortedWords = sortedString.Substring(0, sortedString.Length - 2);
                 lstResultDTO.Add(resultDto);
             }
