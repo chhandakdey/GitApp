@@ -10,7 +10,6 @@ namespace GitApp.Domain
     {
         public long Id { get; set; }
         public string Comment { get; set; }
-        public string FineComment { get; set; }
         public IEnumerable<CommentWord> SortedWords { get; set; }
     }
 

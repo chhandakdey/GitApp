@@ -46,7 +46,7 @@ namespace GitApp.Infrastructure.Adapters
                 request.Content = httpContent;
             }
             var response = await client.SendAsync(request);
-            _logger.LogDebug($"End => GitApiClient: SendAsync => Api Get call: {targetUrl}");
+            _logger.LogDebug($"End => GitApiClient: SendAsync => Api Get call: Status: {response.StatusCode}");
             return response.EnsureSuccessStatusCode();
         }
     }

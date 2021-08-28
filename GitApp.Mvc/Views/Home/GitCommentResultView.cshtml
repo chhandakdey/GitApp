@@ -4,8 +4,17 @@
     ViewData["Title"] = "GitCommentResultView";
 }
 
-<h1>List of Commit for the given Input</h1>
+<h3>List of Commit Comments for the given Repository</h3>
 
+<hr />
+
+<p>
+    The below escape characters are removed from the commit message before sorting. <br />
+    \n, \t, \r, ., &gt;, &lt; 
+
+</p>
+
+<hr />
 <table class="table" id="myTable">
     <thead>
         <tr>

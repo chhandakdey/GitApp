@@ -3,32 +3,42 @@
     ViewData["Title"] = "Home Page";
 }
 
-<form asp-controller="Home" asp-action="Index" method="post">
-    <div class="row">
-        <div class="col-lg-4">Username</div>
-        <div class="col-lg-8">
-            <input asp-for="Username" placeholder="Enter your Username" autocomplete="off" class="form-control" />
-        </div>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Index">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Username" class="control-label"></label>
+                <input asp-for="Username" class="form-control" />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RepoUrl" class="control-label"></label>
+                <input asp-for="RepoUrl" class="form-control" />
+                <span asp-validation-for="RepoUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AccessToken" class="control-label"></label>
+                <input asp-for="AccessToken" class="form-control" />
+                <span asp-validation-for="AccessToken" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Submit" class="btn btn-primary" />
+            </div>
+        </form>
     </div>
-    <br />
-    <div class="row">
-        <div class="col-lg-4">Repository Url</div>
-        <div class="col-lg-8">
-            <input asp-for="RepoUrl" placeholder="Enter the Repository Url" autocomplete="off" class="form-control" />
-        </div>
-    </div>
-    <br />
-    <div class="row">
-        <div class="col-lg-4">Access Token</div>
-        <div class="col-lg-8">
-            <input asp-for="AccessToken" placeholder="Enter the Access Token" autocomplete="off" class="form-control" />
-        </div>
-    </div>
-    <br />
-    <div class="row">
-        <div class="col-lg-offset-4 col-lg-8">
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
-    </div>
+</div>
 
-</form>
+<hr />
+
+@if (ViewBag.Error)
+{
+    <div class="alert alert-danger" role="alert">
+        Error Occurred! Please correct the input fields!
+    </div>
+}
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
