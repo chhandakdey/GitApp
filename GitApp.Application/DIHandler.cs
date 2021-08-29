@@ -1,7 +1,5 @@
 ﻿using GitApp.Application.Interfaces;
 using GitApp.Application.Services;
-using GitApp.Application.Transformers;
-using GitApp.Application.Transformers.Interfaces;
 using GitApp.Domain;
 using GitApp.Domain.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,8 +19,7 @@ namespace GitApp.Application
         public static void AddApplication(this IServiceCollection services)
         {
             services.AddScoped<IGitService, GitService>();
-            services.AddTransient<IAsciiSortingService, AsciiSortingService>();
-            services.AddScoped<ITransformer, GenericTransformer>();
+            services.AddTransient<IAsciiSortingService, AsciiSortingService>();            
         }
     }
 }

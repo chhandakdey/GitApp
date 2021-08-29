@@ -1,6 +1,5 @@
 ﻿using GitApp.Application.DTOs;
 using GitApp.Application.Interfaces;
-using GitApp.Application.Transformers.Interfaces;
 using GitApp.Domain;
 using GitApp.Domain.Interfaces;
 using Microsoft.Extensions.Logging;
