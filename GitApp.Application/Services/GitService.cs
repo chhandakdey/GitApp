@@ -12,6 +12,9 @@ using System.Threading.Tasks;
 
 namespace GitApp.Application.Services
 {
+    /// <summary>
+    /// GIT Operation related Service
+    /// </summary>
     public class GitService : IGitService
     {
         private readonly IAsciiSortingService _asciiService;        
@@ -24,6 +27,11 @@ namespace GitApp.Application.Services
             _asciiService = asciiService;
             _logger = logger;
         }
+        /// <summary>
+        /// Commit Message Operation Service Method
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         public async Task<IEnumerable<GitResultCommentDTO>> GetCommitMessagesAsync(GitRequestDTO model)
         {
             var resultCommitList = await Dao.GetAllAsync(model);

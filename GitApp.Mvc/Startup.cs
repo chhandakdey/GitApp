@@ -15,6 +15,9 @@ using System.Threading.Tasks;
 
 namespace GitApp.Mvc
 {
+    /// <summary>
+    /// Application Startup class. Configurations are registered here. DI is also maintained in this class.
+    /// </summary>
     public class Startup
     {
         public Startup(IConfiguration configuration)

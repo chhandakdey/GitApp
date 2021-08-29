@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace GitApp.Infrastructure.Repositories.Interfaces
 {
+    /// <summary>
+    /// Git Repository Interface
+    /// </summary>
     public interface IGitRepository
     {
         public Task<HttpResponseMessage> GetAllCommentsAsync(GitRequestDTO requestModel);

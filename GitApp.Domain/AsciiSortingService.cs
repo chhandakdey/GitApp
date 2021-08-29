@@ -9,6 +9,11 @@ using System.Threading.Tasks;
 
 namespace GitApp.Domain
 {
+    /// <summary>
+    /// BST Sorting Service based on ASCII Value of the Word. The ASCII value of the Word is Calculated as
+    /// ASCII_OF("HELLO") => ASCII_OF("H") + ASCII_OF("E") + ASCII_OF("L") + ASCII_OF("L") + ASCII_OF("O")
+    /// Ascending ORDER sort is done
+    /// </summary>
     public class AsciiSortingService : IAsciiSortingService
     {
         private readonly ILogger<AsciiSortingService> _logger;
@@ -73,7 +78,7 @@ namespace GitApp.Domain
             }
 
             /* Otherwise, recur
-                down the tree */
+                down the tree, */
             if (UtilityServices.GetAsciiValue(key) < UtilityServices.GetAsciiValue(root.key))
                 root.left = insertRec(root.left, key);
             else if (UtilityServices.GetAsciiValue(key) > UtilityServices.GetAsciiValue(root.key))

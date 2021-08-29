@@ -13,6 +13,9 @@ using System.Threading.Tasks;
 
 namespace GitApp.Mvc.Controllers
 {
+    /// <summary>
+    /// MVC Controller - Index Page is being rendered here. 
+    /// </summary>
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -25,7 +28,10 @@ namespace GitApp.Mvc.Controllers
             _transformer = transformer;
             _gitService = gitService;
         }
-
+        /// <summary>
+        /// Starting Page of the web application. Index Page.
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Index()
         {
             ViewBag.Error = false;
@@ -46,7 +52,11 @@ namespace GitApp.Mvc.Controllers
             }
             return RedirectToAction("Error");
         }
-
+        /// <summary>
+        /// This method is being executed when the form is submitted.
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> Index(GitAppInputViewModel model)
         {
@@ -68,11 +78,6 @@ namespace GitApp.Mvc.Controllers
                 _logger.LogDebug(ex.InnerException?.Message);
             }
             return View(model);
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

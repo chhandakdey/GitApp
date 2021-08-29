@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace GitApp.Application.Interfaces
 {
+    /// <summary>
+    /// GIT Service Interface
+    /// </summary>
     public interface IGitService
     {
         public Task<IEnumerable<GitResultCommentDTO>> GetCommitMessagesAsync(GitRequestDTO requestDTO);

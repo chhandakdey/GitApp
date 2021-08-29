@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace GitApp.Mvc.Models
 {
+    /// <summary>
+    /// User Input View Model
+    /// </summary>
     public class GitAppInputViewModel
     {
         [DisplayName("Username")]

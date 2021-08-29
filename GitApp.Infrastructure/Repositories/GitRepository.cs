@@ -13,6 +13,9 @@ using System.Threading.Tasks;
 
 namespace GitApp.Infrastructure.Repositories
 {
+    /// <summary>
+    /// Repository for any GIT related operations
+    /// </summary>
     public class GitRepository : IGitRepository
     {
         private readonly IApiClient _gitApiClient;       
@@ -25,13 +28,22 @@ namespace GitApp.Infrastructure.Repositories
             _logger = logger;
             _configurationSection = configuration.GetSection("GitAppSettings");
         }
+        /// <summary>
+        /// Get all comments from Git
+        /// </summary>
+        /// <param name="requestModel"></param>
+        /// <returns></returns>
         public async Task<HttpResponseMessage> GetAllCommentsAsync(GitRequestDTO requestModel)
         {
             var targetUrl = BuildTargetUrl(requestModel);
             _logger.LogDebug($"GitRepository: GetAllCommentsAsync => {targetUrl}");
             return await _gitApiClient.SendAsync(targetUrl, HttpMethod.Get, GetHeaders(requestModel.Username, requestModel.AccessToken));
         }
-
+        /// <summary>
+        /// Build the target URL
+        /// </summary>
+        /// <param name="requestModel"></param>
+        /// <returns></returns>
         private string BuildTargetUrl(GitRequestDTO requestModel)
         {
             var targetUrl = _configurationSection.GetValue<string>("GitCommentUrl");
@@ -41,6 +53,12 @@ namespace GitApp.Infrastructure.Repositories
             repoName = repoName.Substring(0, repoName.Length - gitEndStr.Length);
             return targetUrl.Replace("{repo}", repoName);
         }
+        /// <summary>
+        /// Making Http Headers
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         private IEnumerable<KeyValuePair<string, string>> GetHeaders(string username, string password)
         {
             var headers = new List<KeyValuePair<string, string>>();

@@ -11,6 +11,9 @@ using System.Threading.Tasks;
 
 namespace GitApp.Infrastructure.Daos
 {
+    /// <summary>
+    /// Dao for all GIT Operations
+    /// </summary>
     public class GitDao : IDao<GitRequestDTO,IEnumerable<GitCommentDTO>>
     {
         private readonly ILogger<GitDao> _logger;
@@ -20,6 +23,11 @@ namespace GitApp.Infrastructure.Daos
             _logger = logger;
             _gitRepository = gitRepository;
         }
+        /// <summary>
+        /// GetAll operation. The commit messages are returned here
+        /// </summary>
+        /// <param name="gitRequestModel"></param>
+        /// <returns></returns>
         public async Task<IEnumerable<GitCommentDTO>> GetAllAsync(GitRequestDTO gitRequestModel)
         {
             var response = await _gitRepository.GetAllCommentsAsync(gitRequestModel);

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace GitApp.Domain
 {
+    /// <summary>
+    /// Entity for maintaining GIT Comment
+    /// </summary>
     public class GitComment
     {
         public long Id { get; set; }

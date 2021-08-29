@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace GitApp.Application.DTOs
 {
+    /// <summary>
+    /// GIT Request DTO
+    /// </summary>
     public class GitRequestDTO
     {
         public string Username { get; set; }       
