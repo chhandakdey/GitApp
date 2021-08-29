@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace GitApp.Mvc.Models
 {
+    /// <summary>
+    /// Result View Model
+    /// </summary>
     public class GitResultCommentViewModel
     {
         [DisplayName("Id")]

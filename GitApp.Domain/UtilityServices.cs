@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace GitApp.Domain
 {
+    /// <summary>
+    /// String related services should be written here
+    /// </summary>
     public static class UtilityServices 
     {
         public static int GetAsciiValueFirstChar(string word)

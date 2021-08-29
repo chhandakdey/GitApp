@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace GitApp.Infrastructure.Adapters.Interfaces
 {
+    /// <summary>
+    /// API Client generic Interface. Any API Client should implement this interface.
+    /// </summary>
     public interface IApiClient
     {
         public Task<HttpResponseMessage> SendAsync(string targetUrl, HttpMethod httpMethod,

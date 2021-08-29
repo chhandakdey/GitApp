@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace GitApp.Mvc
 {
+    /// <summary>
+    /// Main Program. Application starts here. Injected Serilog in the CreateHostBuilder Method
+    /// </summary>
     public class Program
     {
         public static void Main(string[] args)

@@ -13,6 +13,9 @@ using System.Threading.Tasks;
 
 namespace GitApp.Application
 {
+    /// <summary>
+    /// DI handler for Application layer
+    /// </summary>
     public static class DIHandler
     {
         public static void AddApplication(this IServiceCollection services)

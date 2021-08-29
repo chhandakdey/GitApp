@@ -14,6 +14,9 @@ using System.Threading.Tasks;
 
 namespace GitApp.Infrastructure
 {
+    /// <summary>
+    /// DIHandler extension for Infra layer
+    /// </summary>
     public static class DIHandler
     {
         public static void AddInfrastructure(this IServiceCollection services)

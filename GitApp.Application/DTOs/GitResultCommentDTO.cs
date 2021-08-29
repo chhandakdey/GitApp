@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace GitApp.Application.DTOs
 {
+    /// <summary>
+    /// GIT Result Comment DTO
+    /// </summary>
     public class GitResultCommentDTO
     {
         public long Id { get; set; }
