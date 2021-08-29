@@ -26,7 +26,7 @@ namespace GitApp.Infrastructure.Tests
             var repo = new Mock<IGitRepository>();
             var response = new HttpResponseMessage();
             response.StatusCode = HttpStatusCode.OK;
-            var jsonFileContent = File.ReadAllText(@"C:\Users\cdey\source\repos\GitApp\GitApp.Infrastructure.Tests\Infra\GitHttpResponse.json");
+            var jsonFileContent = File.ReadAllText(@"../../../Infra/GitHttpResponse.json");
             response.Content = new StringContent(jsonFileContent);
             var request = new GitRequestDTO
             {

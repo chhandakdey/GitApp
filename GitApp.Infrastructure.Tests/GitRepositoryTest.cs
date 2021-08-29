@@ -43,8 +43,8 @@ namespace GitApp.Infrastructure.Tests
             };
 
             var response = new HttpResponseMessage();
-            response.StatusCode = HttpStatusCode.OK;
-            var jsonFileContent = File.ReadAllText(@"C:\Users\cdey\source\repos\GitApp\GitApp.Infrastructure.Tests\Infra\GitHttpResponse.json");
+            response.StatusCode = HttpStatusCode.OK;            
+            var jsonFileContent = File.ReadAllText(@"../../../Infra/GitHttpResponse.json");
             response.Content = new StringContent(jsonFileContent);
 
             apiClient.Setup(p => p.SendAsync(It.IsAny<string>(), HttpMethod.Get, It.IsAny<IEnumerable<KeyValuePair<string, string>>>(), null))

@@ -26,7 +26,7 @@ namespace GitApp.Infrastructure.Tests
         {
             var response = new HttpResponseMessage();
             response.StatusCode = HttpStatusCode.OK;
-            var jsonFileContent = File.ReadAllText(@"C:\Users\cdey\source\repos\GitApp\GitApp.Infrastructure.Tests\Infra\GitHttpResponse.json");
+            var jsonFileContent = File.ReadAllText(@"../../../Infra/GitHttpResponse.json");
             response.Content = new StringContent(jsonFileContent);
             _handlerFunc = (request, cancellationToken) => Task.FromResult(response);
         }
@@ -52,7 +52,7 @@ namespace GitApp.Infrastructure.Tests
             var configuration = new HttpConfiguration();
             var responseObj = new HttpResponseMessage();
             responseObj.StatusCode = HttpStatusCode.OK;
-            var jsonFileContent = File.ReadAllText(@"C:\Users\cdey\source\repos\GitApp\GitApp.Infrastructure.Tests\Infra\GitHttpResponse.json");
+            var jsonFileContent = File.ReadAllText(@"../../../Infra/GitHttpResponse.json");
             responseObj.Content = new StringContent(jsonFileContent);
             var clientHandlerStub = new DelegatingHandlerStub((request, cancellationToken) => {
                 request.SetConfiguration(configuration);
